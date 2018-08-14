@@ -53,7 +53,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-    res.render("Working");
+    res.send("Working");
 });
 
 // app.post("/register", (req, res) => {
