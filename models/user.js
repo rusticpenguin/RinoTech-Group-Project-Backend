@@ -6,11 +6,13 @@ const UserSchema = new mongoose.Schema({
     email: String,
     karma: {
         type: Number,
-        Default: 0
+        Default: 0,
+        required: true
     },
     notification: {
         type: Number,
-        Default: 0
+        Default: 0,
+        required: true
     },
     password: String
 });
