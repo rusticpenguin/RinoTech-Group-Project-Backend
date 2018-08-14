@@ -3,16 +3,16 @@ const mongoose = require("mongoose"),
 
 const UserSchema = new mongoose.Schema({
     username: String,
-    password: String,
     email: String,
     karma: {
         type: Number,
         Default: 0
     },
-    notification_count: {
+    notification: {
         type: Number,
         Default: 0
-    }
+    },
+    password: String
 });
 
 UserSchema.plugin(passportLocalMongoose);

@@ -10,6 +10,9 @@ const mongoose = require("mongoose");
 const Posts = require("./models/posts");
 const Comment = require("./models/comments");
 const User = require("./models/User");
+const commentRoutes = require("./routes/comments");
+const postsRoutes = require("./routes/posts");
+const indexRoutes = require("./routes/index");
 const port = process.env.PORT || 8000;
 const LocalStrategy = require("passport-local");
 
@@ -53,18 +56,26 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    var newUser = new User({ username: req.body.username });
+    var newUser = new User({
+        username: req.body.username,
+        email: "test",
+        notification: 0,
+        karma: 0
+    });
     User.register(newUser, req.body.password, (err, user) => {
         passport.authenticate("local")(req, res, () => {
-            res.send("It Works");
+            res.send(user);
         });
     });
 });
 
+// app.use(indexRoutes);
+app.use("/posts", postsRoutes);
+// app.use("/posts/:id/comments", commentRoutes);
+
 app.use((req, res) => {
     res.sendStatus(404);
 });
-
 app.listen(port, function() {
     console.log("Listening on port", port);
 });
