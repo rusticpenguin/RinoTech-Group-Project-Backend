@@ -20,6 +20,7 @@
     "homepage": "https://github.com/rusticpenguin/RinoTech-Group-Project-Backend#readme",
     "dependencies": {
         "body-parser": "^1.18.3",
+        "cors": "^2.8.4",
         "ejs": "^2.6.1",
         "express": "^4.16.3",
         "express-session": "^1.15.6",
