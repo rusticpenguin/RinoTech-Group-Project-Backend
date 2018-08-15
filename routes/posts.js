@@ -7,9 +7,7 @@ router.get("/", (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.render("posts", {
-                post: allPosts
-            });
+            res.send(allPosts);
         }
     });
 });
@@ -34,6 +32,16 @@ router.post("/", (req, res) => {
         } else {
             res.send(newlyCreated);
         }
+    });
+});
+router.put("/:id", (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, req.body, (err, updatedPost) => {
+        err ? console.log(err) : console.log(updatedPost);
+    });
+});
+router.delete("/:id", (req, res) => {
+    Post.findByIdAndRemove(req.params.id, (err, updatedPost) => {
+        err ? console.log(err) : console.log(updatedPost);
     });
 });
 

@@ -21,7 +21,6 @@ router.post("/", (req, res) => {
 
         if (err) {
             console.log(err);
-            res.redirect("/posts");
         } else {
             Comment.create(req.body, (err, comment) => {
                 if (err) {
@@ -36,6 +35,22 @@ router.post("/", (req, res) => {
                 }
             });
         }
+    });
+});
+
+router.put("/:id", (req, res) => {
+    req.body.comment.body = req.sanitize(req.body.comment.body);
+    Comment.findByIdAndUpdate(
+        req.params.id,
+        req.body.comment,
+        (err, updatedcomment) => {
+            err ? console.log(err) : console.log(updatedcomment);
+        }
+    );
+});
+router.delete("/:id", (req, res) => {
+    Comment.findByIdAndRemove(req.params.id, (err, updatedcomment) => {
+        err ? console.log(err) : console.log(updatedcomment);
     });
 });
 
