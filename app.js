@@ -15,6 +15,7 @@ const postsRoutes = require("./routes/posts");
 // const indexRoutes = require("./routes/index");
 const port = process.env.PORT || 8000;
 const LocalStrategy = require("passport-local");
+const cors = require("cors");
 
 app.locals.moment = require("moment");
 
@@ -38,6 +39,7 @@ mongoose.connect(
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("short"));
+app.use(cors());
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
