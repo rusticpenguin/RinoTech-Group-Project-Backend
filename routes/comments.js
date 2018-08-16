@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const Comment = require("../models/comments.js");
-const Posts = require("../models/posts");
+const Posts = require("../models/posts.js");
 
 router.get("/", (req, res) => {
-    Post.find({}, (err, allcomments) => {
+    Comment.find({}, (err, allComments) => {
         if (err) {
             console.log(err);
         } else {
-            res.render("comments", {
-                post: allcomments
-            });
+            res.send(allComments);
         }
     });
 });
